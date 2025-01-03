@@ -2,41 +2,33 @@ import "./style.css";
 
 let input = document.getElementById("input");
 let btns = document.getElementsByClassName("btn");
-let btnSumar = document.getElementById("btn+");
 let btnResultado = document.getElementById("btn=");
-let a = "";
-let b = "";
 
-  const operacion = () => {
+const operacion = () => {
     for (let btn of btns) {
-      console.log(btn.textContent);
       btn.addEventListener("click", () => {
-        input.textContent += btn.textContent;
+        if (btn.textContent !== "=") {
+          input.textContent += btn.textContent;
+        }
       });
     }
   };
-  operacion();
-
+operacion()
   
-  const sumar = () => {
-    let resultado = a + b;
-    return resultado
-  };
-
-  btnSumar.addEventListener("click", () => {
-    a = input.textContent;
-    let resultadoA = Number(a.replace("+", ""));
-    console.log (resultadoA);
-    return Number(resultadoA);
-  });
-
   btnResultado.addEventListener("click", () => {
-    b = input.textContent;
-    let resultadoB = b;
-    console.log(resultadoB);
-    sumar (a + b);
-    return Number(resultadoB);
+    let reemplazo = ''
+    if(input.textContent.includes('x')){
+ reemplazo = input.textContent.replace('x', '*')
+ input.textContent = eval(reemplazo)
+    }else{
+      let resultado = eval(input.textContent);
+    input.textContent = resultado
+    }
   });
+    
+    
+    
+
 
 
 
